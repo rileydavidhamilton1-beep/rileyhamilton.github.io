@@ -1,0 +1,1890 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>In Play Tips — Track Record. Discipline. Edge.</title>
+  <meta name="description" content="Australia's most transparent betting group. 900+ all-time units. Join 5,400+ members betting with real edge." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&family=Barlow+Condensed:wght@800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── TOKENS ── */
+    :root {
+      --black:     #050505;
+      --nb:        #0B0B0B;
+      --card:      #141414;
+      --card2:     #181818;
+      --lime:      #C7F13D;
+      --green:     #39D300;
+      --dgreen:    #1E6B00;
+      --silver:    #C9CED3;
+      --grey:      #8E979F;
+      --white:     #F5F7FA;
+      --bg:        rgba(199,241,61,0.13);
+      --bgs:       rgba(199,241,61,0.07);
+      --bs:        rgba(201,206,211,0.10);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { background: var(--black); scroll-behavior: smooth; overflow-x: hidden; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--black);
+      background-image:
+        linear-gradient(rgba(199,241,61,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(199,241,61,0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      color: var(--white);
+      overflow-x: hidden;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--nb); }
+    ::-webkit-scrollbar-thumb { background: var(--green); border-radius: 2px; }
+
+    /* ── BG GRID ── */
+    .bg-grid {
+      background-image:
+        linear-gradient(rgba(199,241,61,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(199,241,61,0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    /* ── DISPLAY FONT ── */
+    .d { font-family: 'Space Grotesk', sans-serif; }
+
+    /* ── GRADIENT TEXT ── */
+    .gl {
+      background: linear-gradient(135deg, #C7F13D 0%, #7CFC00 55%, #39D300 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    /* ── HERO "START WINNING" GLOW ── */
+    .hero-glow {
+      background: linear-gradient(180deg, #EEFF72 0%, #C7F13D 35%, #7CFC00 65%, #39D300 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      filter:
+        drop-shadow(0 0  5px rgba(199,241,61,0.35))
+        drop-shadow(0 0 14px rgba(57,211,0,0.20))
+        drop-shadow(0 0 28px rgba(57,211,0,0.08));
+    }
+
+    /* ── ORBS ── */
+    .orb {
+      position: absolute; border-radius: 50%;
+      filter: blur(100px); pointer-events: none; z-index: 0;
+    }
+
+    /* ── NAVBAR ── */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(5,5,5,0.75);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(199,241,61,0.09);
+      transition: background .3s, border-color .3s;
+    }
+    #nav.sc { background: rgba(5,5,5,0.97); border-bottom-color: rgba(199,241,61,0.18); }
+
+    /* ── NAV LINK ── */
+    .nl { font-size: 13px; font-weight: 500; color: var(--grey); transition: color .2s; }
+    .nl:hover { color: var(--lime); }
+
+    /* ── MOBILE MENU ── */
+    #mob { display: none; background: rgba(5,5,5,0.98); border-top: 1px solid rgba(199,241,61,0.08); }
+    #mob.open { display: block; }
+
+    /* ── PILL TAG ── */
+    .tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 12px;
+      background: rgba(199,241,61,0.08); border: 1px solid rgba(199,241,61,0.22);
+      border-radius: 100px;
+      font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--lime);
+    }
+    .tag::before {
+      content: ''; width: 5px; height: 5px;
+      background: var(--lime); border-radius: 50%;
+      box-shadow: 0 0 6px var(--lime); flex-shrink: 0;
+    }
+
+    /* ── LIVE BADGE ── */
+    .live {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 3px 9px;
+      background: rgba(57,211,0,0.10); border: 1px solid rgba(57,211,0,0.28);
+      border-radius: 100px;
+      font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--green);
+    }
+    .ld {
+      width: 5px; height: 5px; background: var(--green); border-radius: 50%;
+      animation: blink 1.6s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+    /* ── BUTTONS ── */
+    .btn-g {
+      background: linear-gradient(135deg, #C7F13D 0%, #7CFC00 50%, #39D300 100%);
+      color: #050505; font-weight: 800;
+      font-family: 'Space Grotesk', sans-serif;
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      transition: transform .2s, box-shadow .2s;
+      position: relative; overflow: hidden;
+    }
+    .btn-g:hover { transform: translateY(-1px); box-shadow: 0 10px 30px rgba(199,241,61,.35); }
+    .btn-g:active { transform: translateY(0); }
+
+    .btn-o {
+      border: 1px solid rgba(199,241,61,.28); color: var(--silver); background: transparent;
+      font-weight: 600;
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      transition: all .2s;
+    }
+    .btn-o:hover { border-color: var(--lime); color: var(--lime); background: rgba(199,241,61,.05); }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--card); border: 1px solid rgba(199,241,61,0.12);
+      transition: border-color .3s, transform .3s, box-shadow .3s;
+    }
+    .card:hover {
+      border-color: rgba(199,241,61,.25); transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0,0,0,.4), 0 0 20px rgba(199,241,61,.07);
+    }
+    .card-s {
+      background: var(--card); border: 1px solid rgba(201,206,211,0.10);
+      transition: border-color .3s, transform .3s;
+    }
+    .card-s:hover { border-color: rgba(201,206,211,.22); transform: translateY(-2px); }
+
+    /* ── STAT CARD ── */
+    .sc-card {
+      background: linear-gradient(135deg, #141414, #101010);
+      border: 1px solid rgba(199,241,61,0.12);
+      position: relative; overflow: hidden;
+    }
+    .sc-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(199,241,61,.55), transparent);
+    }
+    .sn {
+      font-family: 'Space Grotesk', sans-serif; font-weight: 800;
+      background: linear-gradient(135deg, #C7F13D, #7CFC00);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    /* ── GRAPH BOX ── */
+    .gb {
+      background: linear-gradient(135deg, #0c0c0c, #0e0e0e);
+      border: 1px solid rgba(199,241,61,0.12);
+      position: relative; overflow: hidden;
+    }
+    .gb::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(199,241,61,.45), transparent);
+    }
+
+    /* ── PROGRESS ── */
+    .prog { height: 2px; background: rgba(199,241,61,.1); border-radius: 2px; overflow: hidden; margin-top: 12px; }
+    .pf {
+      height: 100%; background: linear-gradient(90deg, #C7F13D, #39D300);
+      width: 0; border-radius: 2px;
+      transition: width 1.6s cubic-bezier(.25,.46,.45,.94);
+    }
+
+
+    /* ── SPORT ACCORDION ── */
+    .acc-wrap { display:flex; flex-direction:column; gap:10px; }
+    .acc-btn {
+      width:100%; display:flex; justify-content:space-between; align-items:center;
+      padding:18px 22px;
+      background:linear-gradient(135deg,#111111 0%,#0D0D0D 100%);
+      border:1px solid rgba(199,241,61,0.13);
+      border-radius:14px;
+      cursor:pointer;
+      transition:border-color .22s ease, background .22s ease, border-radius .22s ease;
+      text-align:left;
+    }
+    .acc-btn:hover {
+      border-color:rgba(199,241,61,0.28);
+      background:linear-gradient(135deg,#141414 0%,#101010 100%);
+    }
+    .acc-btn.acc-open {
+      border-color:rgba(199,241,61,0.32);
+      border-bottom-left-radius:0;
+      border-bottom-right-radius:0;
+      background:linear-gradient(135deg,#121a04 0%,#0c1103 100%);
+    }
+    .acc-label {
+      font-family:'Space Grotesk',sans-serif;
+      font-weight:700; font-size:13px;
+      letter-spacing:.07em; text-transform:uppercase;
+      color:#fff;
+    }
+    .acc-icon {
+      width:30px; height:30px; border-radius:50%; flex-shrink:0;
+      border:1px solid rgba(199,241,61,0.22);
+      display:flex; align-items:center; justify-content:center;
+      font-size:20px; line-height:1; color:var(--lime); font-weight:300;
+      transition:transform .28s ease, border-color .22s ease;
+    }
+    .acc-btn.acc-open .acc-icon {
+      transform:rotate(45deg);
+      border-color:rgba(199,241,61,0.50);
+    }
+    .acc-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .25s ease, border-color .2s ease;
+      background: rgba(199,241,61,0.025);
+      border: 1px solid transparent;
+      border-top: none;
+      border-bottom-left-radius: 14px;
+      border-bottom-right-radius: 14px;
+    }
+    .acc-panel.acc-open {
+      max-height: 800px;
+      border-color: rgba(199,241,61,0.13);
+    }
+    .acc-inner { padding:24px 22px 28px; }
+    .acc-ph {
+      background:rgba(199,241,61,0.03);
+      border:1px dashed rgba(199,241,61,0.14);
+      border-radius:12px; height:180px;
+      display:flex; align-items:center; justify-content:center;
+      margin-bottom:16px;
+    }
+    .acc-stat {
+      background:rgba(255,255,255,0.03);
+      border:1px solid rgba(255,255,255,0.07);
+      border-radius:10px; padding:16px 20px;
+      display:flex; justify-content:space-between; align-items:center;
+    }
+
+    /* ── MEMBER TESTIMONIALS ── */
+    .tm-section {
+      background: transparent;
+      padding: 44px 0 52px;
+      position: relative;
+      overflow: hidden;
+    }
+    .tm-section::before {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 60% 40% at 20% 50%, rgba(199,241,61,0.04) 0%, transparent 100%),
+        radial-gradient(ellipse 60% 40% at 80% 50%, rgba(57,211,0,0.03) 0%, transparent 100%);
+    }
+    .tm-heading {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(3.2rem, 12vw, 7.5rem);
+      text-transform: uppercase;
+      text-align: center;
+      letter-spacing: -.01em;
+      line-height: 1;
+      margin-bottom: 18px;
+      color: #FFFFFF;
+    }
+    .tm-sub {
+      text-align: center;
+      font-size: clamp(13px, 2.5vw, 15px);
+      color: var(--grey);
+      line-height: 1.65;
+      max-width: 540px;
+      margin: 0 auto 52px;
+      padding: 0 20px;
+    }
+    .tm-sub a {
+      color: var(--lime);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    /* Swipeable strip */
+    .tm-strip {
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: 0 24px 8px;
+      cursor: grab;
+    }
+    .tm-strip::-webkit-scrollbar { display: none; }
+    .tm-strip.grabbing { cursor: grabbing; }
+    .tm-track {
+      display: flex;
+      gap: 16px;
+      width: max-content;
+    }
+    /* Card — matches site .gb style */
+    .tm-card {
+      flex-shrink: 0;
+      width: 295px;
+      background: linear-gradient(135deg, #0c0c0c, #0e0e0e);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(199,241,61,0.12);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    /* Top green shimmer line matching .gb::before */
+    .tm-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(199,241,61,.45), transparent);
+    }
+    .tm-img-wrap {
+      flex: 1;
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 400px;
+    }
+    .tm-img-wrap img {
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    }
+    .tm-label {
+      padding: 12px 18px 18px;
+      font-size: 11.5px;
+      color: var(--grey);
+      letter-spacing: .01em;
+    }
+    .tm-label strong {
+      color: var(--lime);
+      font-weight: 600;
+    }
+
+    /* ── CTA BG ── */
+    .cta-s {
+      background: transparent;
+      position: relative; overflow: hidden;
+    }
+    .cta-s::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 15% 50%, rgba(57,211,0,.12) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 50%, rgba(199,241,61,.08) 0%, transparent 55%);
+    }
+
+    /* ── DIVIDER ── */
+    .dline { height: 1px; background: linear-gradient(90deg, transparent, rgba(199,241,61,.13), transparent); }
+
+    /* ── BOOK CHIP ── */
+    .bc {
+      padding: 6px 14px;
+      background: rgba(201,206,211,.05); border: 1px solid rgba(201,206,211,.09);
+      border-radius: 8px; font-size: 12px; font-weight: 600; color: var(--grey);
+      transition: all .2s; white-space: nowrap;
+    }
+    .bc:hover { background: rgba(199,241,61,.07); border-color: rgba(199,241,61,.2); color: var(--lime); }
+
+    /* ── SCROLLABLE BTN ROW ── */
+    #rbns::-webkit-scrollbar { display: none; }
+
+    /* ── RANGE BTNS ── */
+    .rb {
+      padding: 5px 12px; border-radius: 8px; border: 1px solid;
+      font-size: 11px; font-weight: 700; cursor: pointer; transition: all .2s;
+    }
+    .rb.on  { background: rgba(199,241,61,.15); color: var(--lime); border-color: rgba(199,241,61,.32); }
+    .rb:not(.on) { background: rgba(201,206,211,.05); color: var(--grey); border-color: rgba(201,206,211,.1); }
+    .rb:not(.on):hover { background: rgba(199,241,61,.07); color: var(--lime); border-color: rgba(199,241,61,.2); }
+
+    /* ── SCROLL REVEAL ── */
+    .rv { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s ease; }
+    .rv.in { opacity: 1; transform: translateY(0); }
+
+    /* ── MINI MONTH CELL ── */
+    .mc { background: rgba(199,241,61,.05); border: 1px solid rgba(199,241,61,.09); border-radius: 7px; padding: 6px 3px; text-align: center; }
+    .ml { font-size: 8px; color: var(--grey); margin-bottom: 2px; }
+    .mv { font-size: 10px; font-weight: 700; color: var(--lime); font-family: 'Space Grotesk', sans-serif; }
+
+    /* ── BOUNCE ── */
+    @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(7px)} }
+    .bob { animation: bob 2.2s ease-in-out infinite; }
+
+    /* ── PRICE HIGHLIGHT ── */
+    .ph {
+      background: linear-gradient(135deg, rgba(199,241,61,.07), rgba(57,211,0,.04));
+      border: 1px solid rgba(199,241,61,.32);
+    }
+
+    /* ── STAR ── */
+    .st { color: #C7F13D; }
+
+    /* ── SHIMMER ── */
+    .shim { position: relative; overflow: hidden; }
+    .shim::after {
+      content: ''; position: absolute;
+      top: -60%; left: -60%; width: 28%; height: 220%;
+      background: linear-gradient(90deg, transparent, rgba(199,241,61,.028), transparent);
+      transform: skewX(-15deg);
+      animation: shim 6s ease-in-out infinite;
+    }
+    @keyframes shim { 0%{left:-60%} 100%{left:130%} }
+
+    /* ── HERO RULE ── */
+    .hrule { height: 1px; background: linear-gradient(90deg, transparent, rgba(199,241,61,.42), transparent); margin: 24px 0; }
+
+    /* ── GRAPH CANVAS HEIGHT ── */
+    .chart-wrap { position: relative; height: 240px; }
+    @media (min-width: 640px) { .chart-wrap { height: 320px; } }
+    @media (min-width: 1024px) { .chart-wrap { height: 360px; } }
+
+    /* ── SECTION SPACING ── */
+    .sec { padding: 28px 0; }
+    @media (min-width: 768px) { .sec { padding: 52px 0; } }
+
+    /* ── MOBILE SPACING OVERRIDES ── */
+    @media (max-width: 767px) {
+      /* Hero — remove forced full-screen height, hug content on mobile */
+      #hero {
+        min-height: unset !important;
+        justify-content: flex-start !important;
+        padding-top: 96px !important;
+        padding-bottom: 40px !important;
+      }
+
+      /* Graph section */
+      #performance.sec { padding: 24px 0 20px; }
+      #performance .text-center.mb-6 { margin-bottom: 14px; }
+      #performance .tag.mb-4 { margin-bottom: 10px; }
+
+      /* Accordion section */
+      section[style*="padding:0 0 32px"] { padding: 0 0 20px !important; }
+      .acc-wrap { gap: 10px; }
+      .text-center.mb-6 { margin-bottom: 12px; }
+
+      /* Stats section */
+      #stats.sec { padding: 24px 0 20px; }
+      #stats .text-center.mb-8 { margin-bottom: 16px; }
+      #stats .mt-10 { margin-top: 24px; }
+
+      /* Member testimonials */
+      .tm-section { padding: 28px 0 36px; }
+      .tm-sub { margin-bottom: 28px; }
+      .tm-heading { margin-bottom: 10px; }
+
+      /* CTA */
+      #cta { padding-top: 36px !important; padding-bottom: 36px !important; }
+
+      /* Footer */
+      footer { padding-top: 28px !important; padding-bottom: 28px !important; }
+
+      /* Inner heading margins */
+      h2.d { margin-top: 8px !important; }
+      .tag { margin-bottom: 8px !important; }
+    }
+
+    /* Hero min height */
+    .hero-min { min-height: 100svh; }
+    @supports not (min-height: 100svh) { .hero-min { min-height: 100vh; } }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="nav">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex items-center justify-between h-14">
+
+      <!-- Logo — centered on mobile via flex -->
+      <a href="#" class="flex items-center gap-2 flex-shrink-0">
+        <img src="logo.svg" alt="In Play Tips Logo" class="w-9 h-9 flex-shrink-0" style="filter:drop-shadow(0 0 6px rgba(199,241,61,0.25));" />
+        <img src="wordmark.png" alt="In Play Tips" style="height:11px;width:auto;display:block;object-fit:contain;" />
+      </a>
+
+      <!-- Desktop links -->
+      <div class="hidden md:flex items-center gap-6">
+        <a href="#performance" class="nl">Results</a>
+        <a href="#stats"       class="nl">Stats</a>
+      </div>
+
+      <!-- Right side -->
+      <div class="flex items-center gap-2">
+        <button onclick="openPlans()" class="btn-g rounded-lg px-4 py-2 text-xs hidden sm:inline-flex" style="cursor:pointer;">
+          Join Now →
+        </button>
+        <button id="ham" aria-label="Menu"
+          class="w-9 h-9 flex flex-col items-center justify-center gap-[5px] md:hidden">
+          <span class="w-[18px] h-[2px] rounded-full block" style="background:var(--silver)"></span>
+          <span class="w-[18px] h-[2px] rounded-full block" style="background:var(--silver)"></span>
+          <span class="w-[18px] h-[2px] rounded-full block" style="background:var(--silver)"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile dropdown -->
+  <div id="mob">
+    <div class="px-4 py-3 flex flex-col gap-0">
+      <a href="#performance"  onclick="cm()" class="py-3 text-sm border-b nl" style="border-color:rgba(199,241,61,.07)">Track Record</a>
+      <a href="#stats"        onclick="cm()" class="py-3 text-sm border-b nl" style="border-color:rgba(199,241,61,.07)">Stats</a>
+      <button onclick="cm();openPlans();"
+         class="btn-g rounded-xl py-3.5 text-sm mt-3 w-full" style="cursor:pointer;">Join Now →</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero" class="hero-min bg-grid relative flex flex-col items-center justify-center overflow-hidden text-center"
+         style="padding-top:100px; padding-bottom:24px; padding-left:20px; padding-right:20px;">
+
+  <!-- Orbs -->
+  <div class="orb" style="top:-5%;left:-15%;width:420px;height:420px;background:radial-gradient(circle,rgba(57,211,0,.16) 0%,transparent 70%);"></div>
+  <div class="orb" style="bottom:0;right:-15%;width:320px;height:320px;background:radial-gradient(circle,rgba(199,241,61,.10) 0%,transparent 70%);"></div>
+
+  <div class="relative z-10 w-full max-w-xl mx-auto">
+
+    <!-- Badge -->
+    <div class="flex flex-wrap justify-center gap-2 mb-6 rv" style="transition-delay:.07s">
+      <div class="live"><span class="ld"></span>Australia's #1 Betting Group</div>
+    </div>
+
+    <!-- Headline -->
+    <h1 class="d text-white mb-8 rv"
+        style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.8rem,10vw,6.5rem);line-height:1.0;letter-spacing:-.01em;text-transform:uppercase;-webkit-text-stroke:0.5px rgba(255,255,255,0.15);text-shadow:0 2px 32px rgba(0,0,0,0.5);transition-delay:.13s">
+      Stop Guessing.<br>
+      <span class="hero-glow">Start Winning</span><br>
+      With Real Edge.
+    </h1>
+
+    <!-- CTAs — stacked, full width on mobile -->
+    <div class="flex flex-col gap-3 w-full max-w-xs mx-auto rv" style="transition-delay:.29s">
+      <button onclick="openPlans()"
+              class="btn-g rounded-xl py-4 text-sm w-full" style="cursor:pointer;">
+        Join Now — View Plans →
+      </button>
+      <a href="#performance"
+         class="btn-o rounded-xl py-3.5 text-sm w-full">
+        View Track Record ↓
+      </a>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ═══ GRAPH ═══ -->
+<section id="performance" class="sec relative overflow-hidden">
+  <div class="orb" style="top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(57,211,0,.06) 0%,transparent 70%);"></div>
+
+  <div class="max-w-6xl mx-auto px-4 relative z-10">
+
+    <!-- Header -->
+    <div class="text-center mb-6 rv">
+      <div class="tag mb-4" style="display:inline-flex;">Performance Dashboard</div>
+      <h2 class="d text-white" style="font-weight:900;font-size:clamp(1.6rem,5vw,2.5rem);letter-spacing:-.035em;line-height:1.1;">ALL TIME BREAKDOWN</h2>
+    </div>
+
+    <!-- Graph card -->
+    <div class="gb rounded-2xl p-4 shim rv" style="transition-delay:.12s">
+
+      <!-- Range buttons — single scrollable row on mobile -->
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin-bottom:16px;margin-left:-4px;margin-right:-4px;">
+        <div id="rbns" style="display:flex;flex-wrap:nowrap;gap:6px;padding:2px 4px;width:max-content;min-width:100%;">
+          <button class="rb on" data-r="all">ALL TIME</button>
+          <button class="rb" data-r="2016">2016</button>
+          <button class="rb" data-r="2017">2017</button>
+          <button class="rb" data-r="2018">2018</button>
+          <button class="rb" data-r="2019">2019</button>
+          <button class="rb" data-r="2020">2020</button>
+          <button class="rb" data-r="2021">2021</button>
+          <button class="rb" data-r="2022">2022</button>
+          <button class="rb" data-r="2023">2023</button>
+          <button class="rb" data-r="2024">2024</button>
+          <button class="rb" data-r="2025">2025</button>
+        </div>
+      </div>
+
+      <!-- Line indicator -->
+      <div class="flex items-center justify-center gap-2 mb-4">
+        <div style="width:28px;height:2.5px;background:linear-gradient(90deg,#C7F13D,#39D300);border-radius:2px;box-shadow:0 0 7px rgba(199,241,61,.55);"></div>
+        <span style="font-size:10.5px;color:var(--grey);">Units Profit</span>
+      </div>
+
+      <!-- Canvas — responsive height via CSS class -->
+      <div class="chart-wrap">
+        <canvas id="chart"></canvas>
+      </div>
+
+      <!-- Foot row -->
+      <div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t" style="border-color:rgba(199,241,61,.07);">
+        <div class="text-center">
+          <div class="d font-bold gl" id="foot-units" style="font-size:clamp(.95rem,3.5vw,1.15rem);line-height:1.2;">+5,678.12U</div>
+          <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--grey);margin-top:4px;">Units</div>
+        </div>
+        <div class="text-center border-x" style="border-color:rgba(199,241,61,.07);">
+          <div class="d font-bold gl" style="font-size:clamp(.95rem,3.5vw,1.15rem);line-height:1.2;">83%</div>
+          <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--grey);margin-top:4px;">Hit Rate</div>
+        </div>
+        <div class="text-center">
+          <div class="d font-bold gl" id="foot-profit" style="font-size:clamp(.95rem,3.5vw,1.15rem);line-height:1.2;">+$567,812</div>
+          <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--grey);margin-top:4px;">Profit Made</div>
+        </div>
+      </div>
+      <!-- Helper note -->
+      <div style="text-align:center;margin-top:10px;">
+        <span style="font-size:10px;color:var(--grey);opacity:.6;letter-spacing:.04em;">Based on $100 per unit</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ SPORT ACCORDION ═══ -->
+<section style="padding:0 0 32px;">
+  <div class="max-w-6xl mx-auto px-4">
+
+    <div class="text-center mb-6">
+      <p style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--grey);">Breakdown by Sport</p>
+    </div>
+
+    <div class="acc-wrap">
+
+      <!-- NRL -->
+      <div class="acc-item">
+        <button class="acc-btn" data-acc="nrl">
+          <span class="acc-label">NRL Units</span>
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-panel" id="acc-nrl">
+          <div class="acc-inner">
+            <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:#fff;font-size:15px;letter-spacing:-.01em;margin-bottom:16px;">NRL Results</h3>
+
+            <!-- NRL stats image -->
+            <div style="border-radius:14px;overflow:hidden;margin-bottom:16px;line-height:0;">
+              <img src="nrl_stats.jpg" alt="NRL All-Time Results"
+                   style="width:100%;height:auto;display:block;border-radius:14px;">
+            </div>
+
+            <!-- Stats row -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+              <div class="acc-stat" style="flex-direction:column;align-items:flex-start;gap:4px;">
+                <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--grey);">All-Time Units</span>
+                <span class="d font-bold gl" style="font-size:1.2rem;">+2,506U</span>
+              </div>
+              <div class="acc-stat" style="flex-direction:column;align-items:flex-start;gap:4px;">
+                <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--grey);">Profit Made</span>
+                <span class="d font-bold gl" style="font-size:1.2rem;">$250,600</span>
+              </div>
+            </div>
+            <div style="text-align:right;margin-bottom:14px;">
+              <span style="font-size:10px;color:var(--grey);opacity:.6;letter-spacing:.04em;">Based on $100 per unit</span>
+            </div>
+
+            <!-- Download link -->
+            <div style="text-align:center;">
+              <a href="https://docs.google.com/spreadsheets/d/1JfctpUgGFXp8Wy2SxtXZsz3FII3-Xth4dLtR5yIHgxs/edit?usp=sharing" target="_blank" rel="noopener" style="
+                display:inline-flex;align-items:center;gap:6px;
+                font-size:12.5px;font-weight:600;
+                color:var(--lime);
+                text-decoration:none;
+                border-bottom:1px solid rgba(199,241,61,0.35);
+                padding-bottom:2px;
+                transition:opacity .18s;
+              " onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
+                ↓ Click here to download results
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AFL -->
+      <div class="acc-item">
+        <button class="acc-btn" data-acc="afl">
+          <span class="acc-label">AFL Units</span>
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-panel" id="acc-afl">
+          <div class="acc-inner">
+            <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:#fff;font-size:15px;letter-spacing:-.01em;margin-bottom:16px;">AFL Results</h3>
+
+            <!-- AFL stats image -->
+            <div style="border-radius:14px;overflow:hidden;margin-bottom:16px;line-height:0;">
+              <img src="afl_stats.jpg" alt="AFL All-Time Results"
+                   style="width:100%;height:auto;display:block;border-radius:14px;">
+            </div>
+
+            <!-- Stats row -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+              <div class="acc-stat" style="flex-direction:column;align-items:flex-start;gap:4px;">
+                <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--grey);">All-Time Units</span>
+                <span class="d font-bold gl" style="font-size:1.2rem;">+1,724U</span>
+              </div>
+              <div class="acc-stat" style="flex-direction:column;align-items:flex-start;gap:4px;">
+                <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--grey);">Profit Made</span>
+                <span class="d font-bold gl" style="font-size:1.2rem;">$172,400</span>
+              </div>
+            </div>
+            <div style="text-align:right;margin-bottom:14px;">
+              <span style="font-size:10px;color:var(--grey);opacity:.6;letter-spacing:.04em;">Based on $100 per unit</span>
+            </div>
+
+            <!-- Download link -->
+            <div style="text-align:center;">
+              <a href="https://docs.google.com/spreadsheets/d/1lVCw1YaLot7PJiiPN5rm0Qn0emEHPb4dczV1MafChTY/edit?usp=sharing" target="_blank" rel="noopener" style="
+                display:inline-flex;align-items:center;gap:6px;
+                font-size:12.5px;font-weight:600;
+                color:var(--lime);
+                text-decoration:none;
+                border-bottom:1px solid rgba(199,241,61,0.35);
+                padding-bottom:2px;
+                transition:opacity .18s;
+              " onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
+                ↓ Click here to download results
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Other Sports & Racing -->
+      <div class="acc-item">
+        <button class="acc-btn" data-acc="other">
+          <span class="acc-label">Other Sports &amp; Racing Units</span>
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-panel" id="acc-other">
+          <div class="acc-inner">
+            <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:#fff;font-size:15px;letter-spacing:-.01em;margin-bottom:16px;">Other Sports &amp; Racing Results</h3>
+
+            <!-- Racing stats image -->
+            <div style="border-radius:14px;overflow:hidden;margin-bottom:16px;line-height:0;">
+              <img src="racing_stats.jpg" alt="Racing All-Time Results"
+                   style="width:100%;height:auto;display:block;border-radius:14px;">
+            </div>
+
+            <!-- Stats row -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+              <div class="acc-stat" style="flex-direction:column;align-items:flex-start;gap:4px;">
+                <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--grey);">All-Time Units</span>
+                <span class="d font-bold gl" style="font-size:1.2rem;">+624U</span>
+              </div>
+              <div class="acc-stat" style="flex-direction:column;align-items:flex-start;gap:4px;">
+                <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--grey);">Profit Made</span>
+                <span class="d font-bold gl" style="font-size:1.2rem;">$62,400</span>
+              </div>
+            </div>
+            <div style="text-align:right;margin-bottom:14px;">
+              <span style="font-size:10px;color:var(--grey);opacity:.6;letter-spacing:.04em;">Based on $100 per unit</span>
+            </div>
+
+            <!-- Download link -->
+            <div style="text-align:center;">
+              <a href="https://docs.google.com/spreadsheets/d/1nYa1ubqil_RddyXE4npTFGhOM4W1ye4sWRmF_KoUy8o/edit?usp=sharing" target="_blank" rel="noopener" style="
+                display:inline-flex;align-items:center;gap:6px;
+                font-size:12.5px;font-weight:600;
+                color:var(--lime);
+                text-decoration:none;
+                border-bottom:1px solid rgba(199,241,61,0.35);
+                padding-bottom:2px;
+                transition:opacity .18s;
+              " onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
+                ↓ Click here to download results
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS ═══ -->
+<section id="stats" class="sec">
+  <div class="max-w-6xl mx-auto px-4">
+
+    <div class="text-center mb-8 rv">
+      <div class="tag mb-3" style="display:inline-flex;">Numbers Don't Lie</div>
+      <h2 class="d font-bold text-white" style="font-size:clamp(1.6rem,5vw,2.5rem);letter-spacing:-.02em;margin-top:12px;">The Track Record Speaks</h2>
+      <p style="font-size:13px;color:var(--grey);margin-top:6px;">Publicly tracked. Always honest. Never hidden.</p>
+    </div>
+
+    <!-- Stat cards — 1 col mobile, 2 col sm, 4 col lg -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+      <div class="sc-card rounded-2xl p-4 shim rv" style="transition-delay:.07s">
+        <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--grey);margin-bottom:8px;">All-Time Units</div>
+        <div class="sn" style="font-size:clamp(1.55rem,5vw,2.8rem);line-height:1;"
+             data-target="5678.12" data-suffix="U" data-prefix="+" data-dec="2">+0U</div>
+        <div class="prog"><div class="pf" data-w="92"></div></div>
+        <p style="font-size:10.5px;color:var(--grey);margin-top:8px;line-height:1.5;">10 years of tracked results</p>
+      </div>
+      <div class="sc-card rounded-2xl p-4 shim rv" style="transition-delay:.13s">
+        <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--grey);margin-bottom:8px;">Hit Rate</div>
+        <div class="sn" style="font-size:clamp(1.55rem,5vw,2.8rem);line-height:1;"
+             data-target="83" data-suffix="%">0%</div>
+        <div class="prog"><div class="pf" data-w="83"></div></div>
+        <p style="font-size:10.5px;color:var(--grey);margin-top:8px;line-height:1.5;">Across 10 years tracked</p>
+      </div>
+      <div class="sc-card rounded-2xl p-4 shim rv" style="transition-delay:.19s">
+        <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--grey);margin-bottom:8px;">Member Profit</div>
+        <div class="sn" style="font-size:clamp(1.55rem,5vw,2.8rem);line-height:1;"
+             data-target="12.8" data-suffix="M" data-prefix="$">$0M</div>
+        <div class="prog"><div class="pf" data-w="80"></div></div>
+        <p style="font-size:10.5px;color:var(--grey);margin-top:8px;line-height:1.5;">Combined member returns</p>
+      </div>
+      <div class="sc-card rounded-2xl p-4 shim rv" style="transition-delay:.25s">
+        <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--grey);margin-bottom:8px;">Active Members</div>
+        <div class="sn" style="font-size:clamp(1.55rem,5vw,2.8rem);line-height:1;"
+             data-target="5424" data-suffix="+" data-comma="1">0+</div>
+        <div class="prog"><div class="pf" data-w="96"></div></div>
+        <p style="font-size:10.5px;color:var(--grey);margin-top:8px;line-height:1.5;">Winning alongside us monthly</p>
+      </div>
+    </div>
+
+    <!-- Bookies -->
+    <div class="mt-10 rv" style="transition-delay:.35s">
+      <p class="text-center mb-4" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--grey);">Works Across All Major Books</p>
+      <div class="flex flex-wrap justify-center gap-2">
+        <div class="bc">Sportsbet</div><div class="bc">Bet365</div><div class="bc">TAB</div>
+        <div class="bc">Ladbrokes</div><div class="bc">Neds</div><div class="bc">PointsBet</div>
+        <div class="bc">Unibet</div><div class="bc">Betfair</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══ MEMBER TESTIMONIALS ═══ -->
+<section id="wins" class="tm-section">
+
+  <div class="rv" style="text-align:center;padding:0 20px;">
+    <div class="tag mb-3" style="display:inline-flex;margin-bottom:16px;">Verified Member Wins</div>
+    <h2 class="tm-heading">Member Testimonials</h2>
+    <p class="tm-sub">
+      Don't just take our word for it — hear from Aussie punters that have taken their betting to the next level.
+    </p>
+  </div>
+
+  <!-- Swipeable card strip -->
+  <div class="tm-strip" id="tm-strip">
+    <div class="tm-track" id="tm-track"></div>
+  </div>
+
+</section>
+
+<!-- ═══ FINAL CTA ═══ -->
+<section id="cta" class="cta-s py-14">
+  <div class="max-w-lg mx-auto px-4 text-center relative z-10">
+    <div class="rv">
+      <div class="tag mb-5" style="display:inline-flex;">Limited Spots Available</div>
+      <h2 class="d font-extrabold text-white mb-5"
+          style="font-size:clamp(2rem,7vw,4.5rem);line-height:1.06;letter-spacing:-.03em;">
+        Ready to Bet<br><span class="gl">With Real Edge?</span>
+      </h2>
+      <p class="mb-7" style="font-size:14.5px;color:var(--grey);line-height:1.72;max-width:380px;margin-left:auto;margin-right:auto;">
+        Join 5,400+ members who've stopped guessing and started profiting alongside a data-driven system with 900+ units behind it.
+      </p>
+
+      <!-- Full-width stack on mobile -->
+      <div class="flex flex-col gap-3 max-w-xs mx-auto mb-8">
+        <button onclick="openPlans()" class="btn-g rounded-xl py-4 text-sm w-full" style="cursor:pointer;">
+          Join In Play Tips →
+        </button>
+        <a href="https://inplayconsulting.com" class="btn-o rounded-xl py-3.5 text-sm w-full">
+          Learn More
+        </a>
+      </div>
+
+      <!-- Trust row — wraps cleanly -->
+      <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+        <span style="font-size:12px;color:var(--grey);"><span style="color:var(--lime);">✓</span> Cancel anytime</span>
+        <span style="font-size:12px;color:var(--grey);"><span style="color:var(--lime);">✓</span> 24/7 support</span>
+        <span style="font-size:12px;color:var(--grey);"><span style="color:var(--lime);">✓</span> Results tracked publicly</span>
+        <span style="font-size:12px;color:var(--grey);"><span style="color:var(--lime);">✓</span> 18+ only</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PLANS MODAL ═══ -->
+<div id="plans-modal" onclick="closePlansOutside(event)" style="
+  display:none;
+  position:fixed;inset:0;z-index:1000;
+  background:rgba(0,0,0,0.75);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  align-items:flex-end;justify-content:center;
+  opacity:0;transition:opacity .25s ease;
+">
+  <div id="plans-sheet" style="
+    background:linear-gradient(170deg,#141414 0%,#0D0D0D 100%);
+    border:1px solid rgba(199,241,61,0.12);
+    border-radius:28px 28px 0 0;
+    padding:32px 24px 40px;
+    width:100%;max-width:480px;
+    transform:translateY(40px);
+    transition:transform .32s cubic-bezier(.22,.68,0,1.2);
+    position:relative;
+    box-shadow:0 -8px 60px rgba(0,0,0,0.7);
+  ">
+    <!-- Close button -->
+    <button onclick="closePlans()" style="
+      position:absolute;top:16px;right:16px;
+      background:rgba(255,255,255,0.07);border:none;
+      width:34px;height:34px;border-radius:50%;cursor:pointer;
+      color:#fff;font-size:18px;line-height:1;
+      display:flex;align-items:center;justify-content:center;
+    ">✕</button>
+
+    <!-- Heading -->
+    <div style="text-align:center;margin-bottom:28px;">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--lime);margin-bottom:10px;">In Play Tips</div>
+      <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2rem;color:#fff;text-transform:uppercase;letter-spacing:-.01em;line-height:1;">Choose Your Plan</h3>
+      <p style="font-size:12.5px;color:var(--grey);margin-top:8px;">All plans include full access. Cancel anytime.</p>
+    </div>
+
+    <!-- Plans -->
+    <div style="display:flex;flex-direction:column;gap:12px;">
+
+      <!-- Weekly -->
+      <a href="https://whop.com/checkout/plan_ShotwpPHr8fFq" target="_blank" rel="noopener" style="
+        display:flex;justify-content:space-between;align-items:center;
+        background:rgba(255,255,255,0.04);
+        border:1px solid rgba(255,255,255,0.09);
+        border-radius:16px;padding:16px 20px;
+        text-decoration:none;
+        transition:background .18s,border-color .18s,transform .15s;
+      " onmouseover="this.style.background='rgba(255,255,255,0.08)';this.style.transform='scale(1.01)'"
+         onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.transform='scale(1)'">
+        <div>
+          <div style="font-weight:700;font-size:15px;color:#fff;">Weekly</div>
+          <div style="font-size:11.5px;color:var(--grey);margin-top:3px;">Cancel anytime</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-weight:800;font-size:18px;color:var(--lime);">$149.99</div>
+          <div style="font-size:10.5px;color:var(--grey);margin-top:2px;">per week</div>
+        </div>
+      </a>
+
+      <!-- Monthly — highlighted -->
+      <a href="https://whop.com/checkout/plan_dx7yCOSElkxId" target="_blank" rel="noopener" style="
+        display:flex;justify-content:space-between;align-items:center;
+        background:rgba(199,241,61,0.09);
+        border:2px solid rgba(199,241,61,0.5);
+        border-radius:16px;padding:16px 20px;
+        text-decoration:none;position:relative;overflow:hidden;
+        transition:background .18s,transform .15s;
+      " onmouseover="this.style.background='rgba(199,241,61,0.16)';this.style.transform='scale(1.01)'"
+         onmouseout="this.style.background='rgba(199,241,61,0.09)';this.style.transform='scale(1)'">
+        <div style="
+          position:absolute;top:0;right:0;
+          background:var(--lime);color:#050505;
+          font-size:9px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;
+          padding:4px 12px;border-radius:0 14px 0 10px;
+        ">Most Popular</div>
+        <div>
+          <div style="font-weight:700;font-size:15px;color:#fff;">Monthly</div>
+          <div style="font-size:11.5px;color:var(--grey);margin-top:3px;">Cancel anytime</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-weight:800;font-size:18px;color:var(--lime);">$249.99</div>
+          <div style="font-size:10.5px;color:var(--grey);margin-top:2px;">per month</div>
+        </div>
+      </a>
+
+      <!-- 3 Months -->
+      <a href="https://whop.com/checkout/plan_OJXRIJxQQ34EM" target="_blank" rel="noopener" style="
+        display:flex;justify-content:space-between;align-items:center;
+        background:rgba(255,255,255,0.04);
+        border:1px solid rgba(255,255,255,0.09);
+        border-radius:16px;padding:16px 20px;
+        text-decoration:none;
+        transition:background .18s,border-color .18s,transform .15s;
+      " onmouseover="this.style.background='rgba(255,255,255,0.08)';this.style.transform='scale(1.01)'"
+         onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.transform='scale(1)'">
+        <div>
+          <div style="font-weight:700;font-size:15px;color:#fff;">3 Months</div>
+          <div style="font-size:11.5px;color:var(--grey);margin-top:3px;">Best long-term rate</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-weight:800;font-size:18px;color:var(--lime);">$949.99</div>
+          <div style="font-size:10.5px;color:var(--grey);margin-top:2px;">one payment</div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Reassurance -->
+    <p style="text-align:center;font-size:11px;color:var(--grey);margin-top:20px;line-height:1.6;">
+      🔒 Secure checkout via Whop &nbsp;·&nbsp; Instant access &nbsp;·&nbsp; Cancel anytime
+    </p>
+
+  </div>
+</div>
+
+<!-- ═══ BANNER ═══ -->
+<div style="position:relative;line-height:0;overflow:hidden;">
+  <!-- Black fade from above -->
+  <div style="position:absolute;top:0;left:0;right:0;height:120px;z-index:2;
+    background:linear-gradient(to bottom, var(--black) 0%, transparent 100%);
+    pointer-events:none;"></div>
+  <img src="banner.jpg" alt="In Play Tips Sports"
+       style="width:100%;height:auto;display:block;object-fit:cover;">
+</div>
+
+<!-- ═══ TERMS MODAL ═══ -->
+<div id="terms-modal" onclick="closeTermsOutside(event)" style="
+  display:none;
+  position:fixed;inset:0;z-index:1100;
+  background:rgba(0,0,0,0.80);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  align-items:flex-end;justify-content:center;
+  opacity:0;transition:opacity .25s ease;
+">
+  <div id="terms-sheet" style="
+    background:linear-gradient(170deg,#141414 0%,#0D0D0D 100%);
+    border:1px solid rgba(199,241,61,0.10);
+    border-radius:28px 28px 0 0;
+    padding:32px 24px 48px;
+    width:100%;max-width:640px;
+    max-height:88vh;
+    display:flex;flex-direction:column;
+    transform:translateY(40px);
+    transition:transform .32s cubic-bezier(.22,.68,0,1.2);
+    position:relative;
+    box-shadow:0 -8px 60px rgba(0,0,0,0.7);
+  ">
+    <!-- Close -->
+    <button onclick="closeTerms()" style="
+      position:absolute;top:16px;right:16px;flex-shrink:0;
+      background:rgba(255,255,255,0.07);border:none;
+      width:34px;height:34px;border-radius:50%;cursor:pointer;
+      color:#fff;font-size:18px;line-height:1;
+      display:flex;align-items:center;justify-content:center;
+    ">✕</button>
+
+    <!-- Header -->
+    <div style="flex-shrink:0;margin-bottom:20px;padding-right:44px;">
+      <div style="display:inline-flex;align-items:center;gap:7px;background:rgba(199,241,61,0.08);border:1px solid rgba(199,241,61,0.18);border-radius:20px;padding:4px 12px;margin-bottom:12px;">
+        <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--lime);">In Play Tips</span>
+      </div>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:clamp(1.2rem,5vw,1.6rem);color:#fff;letter-spacing:-.025em;line-height:1.2;">Terms &amp; Conditions</h2>
+    </div>
+
+    <!-- Scrollable body -->
+    <div style="
+      overflow-y:auto;flex:1;
+      scrollbar-width:thin;scrollbar-color:rgba(199,241,61,.25) transparent;
+      padding-right:4px;
+    ">
+      <div style="font-family:'Inter',sans-serif;font-size:13.5px;color:rgba(201,206,211,.75);line-height:1.75;">
+
+        <p style="margin-bottom:16px;">These Terms &amp; Conditions govern your access to and use of all In Play Tips services, including our website, software tools, private communities (such as Discord), and any related platforms ("Services"). These Services are operated by <strong style="color:var(--silver);">In Play Tips Pty Ltd</strong> ("In Play Tips", "we", "us", "our").</p>
+        <p style="margin-bottom:16px;">By accessing or using any part of the Services, you confirm that you have read, understood, and agreed to these Terms. If you do not agree, you must not use the Services.</p>
+
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--lime);text-transform:uppercase;letter-spacing:.08em;margin:24px 0 10px;">Eligibility &amp; Accounts</h3>
+        <p style="margin-bottom:8px;">To use In Play Tips, you must create an account. You confirm that all information provided is accurate and that you are at least 18 years of age.</p>
+        <p style="margin-bottom:8px;">You are responsible for your account and any activity under it. Keep your login details secure and do not share them with anyone. If you believe your account has been compromised, notify us immediately.</p>
+        <p style="margin-bottom:16px;">Account sharing, abuse, or unauthorised access may result in immediate suspension or termination of your account without refund.</p>
+
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--lime);text-transform:uppercase;letter-spacing:.08em;margin:24px 0 10px;">Subscriptions, Payments &amp; Cancellations</h3>
+        <p style="margin-bottom:8px;">In Play Tips operates on a subscription basis. Payments are charged upfront and recur automatically according to the plan you select (weekly, monthly, or yearly).</p>
+        <p style="margin-bottom:8px;">You may cancel your subscription at any time. Cancellations stop future billing but do not entitle you to a refund for time already paid.</p>
+        <p style="margin-bottom:8px;">If you subscribe through a third-party payment provider, you are responsible for managing and cancelling payments through that provider.</p>
+        <p style="margin-bottom:16px;">Refund requests submitted within 48 hours of renewal may be considered at our discretion and, if approved, will incur a 10% processing fee.</p>
+
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--lime);text-transform:uppercase;letter-spacing:.08em;margin:24px 0 10px;">Promotions &amp; Free Access</h3>
+        <p style="margin-bottom:8px;">Occasionally, In Play Tips may offer free trials or promotional discounts. These offers are limited to one per individual.</p>
+        <p style="margin-bottom:16px;">Any attempt to misuse promotions—including multiple accounts, false details, or circumvention of limits—will result in revoked access and possible charges for unauthorised use.</p>
+
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--lime);text-transform:uppercase;letter-spacing:.08em;margin:24px 0 10px;">Community Access &amp; Conduct</h3>
+        <p style="margin-bottom:8px;">Certain subscriptions include access to private communities such as Discord. All members must follow the community rules posted within those platforms.</p>
+        <p style="margin-bottom:8px;">We reserve the right to remove users from community access for rule violations. Removal from community spaces does not entitle you to a refund.</p>
+        <p style="margin-bottom:16px;">Views, opinions, or betting ideas shared by other users do not represent official In Play Tips advice. You are solely responsible for your own decisions.</p>
+
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--lime);text-transform:uppercase;letter-spacing:.08em;margin:24px 0 10px;">Tools, Data &amp; Availability</h3>
+        <p style="margin-bottom:8px;">In Play Tips provides betting-related insights, data tools, tracking features, and educational content. While we aim for accuracy, we do not guarantee that information is complete, error-free, or updated in real time.</p>
+        <p style="margin-bottom:8px;">Service interruptions, data gaps, or temporary outages may occur. No refunds will be issued for downtime, missing data, or tool unavailability.</p>
+        <p style="margin-bottom:8px;">You agree not to:</p>
+        <ul style="list-style:none;padding:0;margin:0 0 16px;display:flex;flex-direction:column;gap:6px;">
+          <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--lime);font-size:11px;margin-top:3px;">▸</span><span>Bypass security or access restrictions</span></li>
+          <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--lime);font-size:11px;margin-top:3px;">▸</span><span>Copy, scrape, or reverse-engineer our systems</span></li>
+          <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--lime);font-size:11px;margin-top:3px;">▸</span><span>Disrupt or interfere with our services or networks</span></li>
+        </ul>
+
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--lime);text-transform:uppercase;letter-spacing:.08em;margin:24px 0 10px;">Ownership &amp; Intellectual Property</h3>
+        <p style="margin-bottom:8px;">All branding, content, software, and systems used by In Play Tips are owned by In Play Tips Pty Ltd.</p>
+        <p style="margin-bottom:8px;">You may not reproduce, modify, distribute, or commercially use any part of the Services without written permission.</p>
+        <p style="margin-bottom:16px;">Any content created using In Play Tips branding or materials may be claimed by In Play Tips and you agree to assign rights if requested.</p>
+
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--lime);text-transform:uppercase;letter-spacing:.08em;margin:24px 0 10px;">Account Termination</h3>
+        <p style="margin-bottom:8px;">We may suspend or terminate access to the Services at any time if you breach these Terms or engage in behaviour we consider harmful, abusive, or dishonest.</p>
+        <p style="margin-bottom:16px;">Termination does not affect provisions that are intended to survive, including ownership rights, disclaimers, and liability limitations.</p>
+
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--lime);text-transform:uppercase;letter-spacing:.08em;margin:24px 0 10px;">External Services</h3>
+        <p style="margin-bottom:8px;">Our Services may include links to third-party websites or tools. We do not control or accept responsibility for third-party content, policies, or practices.</p>
+        <p style="margin-bottom:16px;">Use of third-party services is entirely at your own risk.</p>
+
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--lime);text-transform:uppercase;letter-spacing:.08em;margin:24px 0 10px;">Changes to These Terms</h3>
+        <p style="margin-bottom:8px;">We may update these Terms at any time. Where reasonable, significant changes will be communicated in advance.</p>
+        <p style="margin-bottom:16px;">Continued use of the Services after updates take effect means you accept the revised Terms.</p>
+
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--lime);text-transform:uppercase;letter-spacing:.08em;margin:24px 0 10px;">Betting Disclaimer</h3>
+        <p style="margin-bottom:8px;">In Play Tips provides betting education, analysis, and informational tools only. We do not guarantee profits or winning outcomes.</p>
+        <p style="margin-bottom:16px;">All betting carries risk. You are fully responsible for your betting decisions, results, and financial outcomes. In Play Tips is not liable for losses arising from user actions, bookmaker decisions, errors, or system limitations.</p>
+
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--lime);text-transform:uppercase;letter-spacing:.08em;margin:24px 0 10px;">Governing Law</h3>
+        <p style="margin-bottom:16px;">These Terms are governed by the laws of Australia. If any provision is deemed invalid, the remaining Terms will continue to apply.</p>
+
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--lime);text-transform:uppercase;letter-spacing:.08em;margin:24px 0 10px;">Contact</h3>
+        <p style="margin-bottom:4px;">For questions or concerns regarding these Terms, contact:</p>
+        <a href="mailto:inplaytipss@gmail.com" style="color:var(--lime);text-decoration:none;font-weight:600;">inplaytipss@gmail.com</a>
+
+        <!-- Bottom spacer -->
+        <div style="margin-top:32px;padding-top:20px;border-top:1px solid rgba(199,241,61,0.07);text-align:center;">
+          <span style="font-size:11px;color:rgba(142,151,159,.4);">© 2026 In Play Tips Pty Ltd. All rights reserved.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ RESPONSIBLE GAMBLING MODAL ═══ -->
+<div id="rg-modal" onclick="closeRGOutside(event)" style="
+  display:none;
+  position:fixed;inset:0;z-index:1100;
+  background:rgba(0,0,0,0.80);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  align-items:flex-end;justify-content:center;
+  opacity:0;transition:opacity .25s ease;
+">
+  <div id="rg-sheet" style="
+    background:linear-gradient(170deg,#141414 0%,#0D0D0D 100%);
+    border:1px solid rgba(199,241,61,0.10);
+    border-radius:28px 28px 0 0;
+    padding:32px 24px 48px;
+    width:100%;max-width:640px;
+    max-height:88vh;
+    display:flex;flex-direction:column;
+    transform:translateY(40px);
+    transition:transform .32s cubic-bezier(.22,.68,0,1.2);
+    position:relative;
+    box-shadow:0 -8px 60px rgba(0,0,0,0.7);
+  ">
+    <!-- Close -->
+    <button onclick="closeRG()" style="
+      position:absolute;top:16px;right:16px;flex-shrink:0;
+      background:rgba(255,255,255,0.07);border:none;
+      width:34px;height:34px;border-radius:50%;cursor:pointer;
+      color:#fff;font-size:18px;line-height:1;
+      display:flex;align-items:center;justify-content:center;
+    ">✕</button>
+
+    <!-- Header -->
+    <div style="flex-shrink:0;margin-bottom:20px;padding-right:44px;">
+      <div style="display:inline-flex;align-items:center;gap:7px;background:rgba(199,241,61,0.08);border:1px solid rgba(199,241,61,0.18);border-radius:20px;padding:4px 12px;margin-bottom:12px;">
+        <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--lime);">In Play Tips</span>
+      </div>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:clamp(1.2rem,5vw,1.6rem);color:#fff;letter-spacing:-.025em;line-height:1.2;">Responsible Gambling</h2>
+    </div>
+
+    <!-- Scrollable body -->
+    <div style="
+      overflow-y:auto;flex:1;
+      scrollbar-width:thin;scrollbar-color:rgba(199,241,61,.25) transparent;
+      padding-right:4px;
+    ">
+      <div style="font-family:'Inter',sans-serif;font-size:13.5px;color:rgba(201,206,211,.75);line-height:1.75;">
+
+        <p style="margin-bottom:16px;">At In Play Tips, we believe betting should always be approached responsibly. While we provide analysis, insights, and educational betting content, we recognise that gambling can present risks for some individuals.</p>
+        <p style="margin-bottom:16px;">We encourage all members to treat betting as entertainment only and to stay in control of both time and money spent.</p>
+
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--lime);text-transform:uppercase;letter-spacing:.08em;margin:24px 0 12px;">Responsible Gambling Guidelines</h3>
+
+        <!-- Guideline cards -->
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
+          <div style="background:rgba(199,241,61,0.04);border:1px solid rgba(199,241,61,0.09);border-radius:12px;padding:14px 16px;">
+            <p style="font-weight:700;color:var(--silver);font-size:13px;margin-bottom:4px;">Set Financial Limits</p>
+            <p style="font-size:12.5px;">Only wager money you can afford to lose. Establish a betting budget in advance and never exceed it.</p>
+          </div>
+          <div style="background:rgba(199,241,61,0.04);border:1px solid rgba(199,241,61,0.09);border-radius:12px;padding:14px 16px;">
+            <p style="font-weight:700;color:var(--silver);font-size:13px;margin-bottom:4px;">Manage Your Time</p>
+            <p style="font-size:12.5px;">Limit how much time you spend betting. Take regular breaks and ensure gambling does not interfere with work, relationships, or daily life.</p>
+          </div>
+          <div style="background:rgba(199,241,61,0.04);border:1px solid rgba(199,241,61,0.09);border-radius:12px;padding:14px 16px;">
+            <p style="font-weight:700;color:var(--silver);font-size:13px;margin-bottom:4px;">Do Not Chase Losses</p>
+            <p style="font-size:12.5px;">Losses are part of betting. Trying to recover losses by placing additional bets often leads to further harm.</p>
+          </div>
+          <div style="background:rgba(199,241,61,0.04);border:1px solid rgba(199,241,61,0.09);border-radius:12px;padding:14px 16px;">
+            <p style="font-weight:700;color:var(--silver);font-size:13px;margin-bottom:4px;">Keep Betting Enjoyable</p>
+            <p style="font-size:12.5px;">Betting should never be used as a way to make money, solve financial problems, or cope with stress. If it stops being enjoyable, it's time to step away.</p>
+          </div>
+        </div>
+
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--lime);text-transform:uppercase;letter-spacing:.08em;margin:24px 0 10px;">Signs Gambling May Be a Problem</h3>
+        <p style="margin-bottom:10px;">You or someone you know may be at risk if gambling is causing:</p>
+        <ul style="list-style:none;padding:0;margin:0 0 16px;display:flex;flex-direction:column;gap:6px;">
+          <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--lime);font-size:11px;margin-top:3px;">▸</span><span>Spending more money or time than intended</span></li>
+          <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--lime);font-size:11px;margin-top:3px;">▸</span><span>Anxiety, frustration, or restlessness when not betting</span></li>
+          <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--lime);font-size:11px;margin-top:3px;">▸</span><span>Hiding betting behaviour from friends or family</span></li>
+          <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--lime);font-size:11px;margin-top:3px;">▸</span><span>Borrowing money or selling items to fund betting</span></li>
+          <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--lime);font-size:11px;margin-top:3px;">▸</span><span>Neglecting work, personal responsibilities, or relationships</span></li>
+        </ul>
+        <p style="margin-bottom:20px;">Recognising these signs early is important.</p>
+
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--lime);text-transform:uppercase;letter-spacing:.08em;margin:24px 0 12px;">Support &amp; Assistance</h3>
+        <p style="margin-bottom:12px;">If gambling is becoming a concern, free and confidential help is available in Australia:</p>
+
+        <!-- Support cards -->
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
+          <div style="background:rgba(199,241,61,0.04);border:1px solid rgba(199,241,61,0.09);border-radius:12px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+            <div>
+              <p style="font-weight:700;color:var(--silver);font-size:13px;margin-bottom:2px;">Gambling Help Online</p>
+              <p style="font-size:12px;color:rgba(201,206,211,.55);">24/7 counselling and support</p>
+            </div>
+            <a href="tel:1800858858" style="font-size:13px;font-weight:700;color:var(--lime);text-decoration:none;white-space:nowrap;">📞 1800 858 858</a>
+          </div>
+          <div style="background:rgba(199,241,61,0.04);border:1px solid rgba(199,241,61,0.09);border-radius:12px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+            <div>
+              <p style="font-weight:700;color:var(--silver);font-size:13px;margin-bottom:2px;">Lifeline Australia</p>
+              <p style="font-size:12px;color:rgba(201,206,211,.55);">24/7 crisis support</p>
+            </div>
+            <a href="tel:131114" style="font-size:13px;font-weight:700;color:var(--lime);text-decoration:none;white-space:nowrap;">📞 13 11 14</a>
+          </div>
+          <div style="background:rgba(199,241,61,0.04);border:1px solid rgba(199,241,61,0.09);border-radius:12px;padding:14px 16px;">
+            <p style="font-weight:700;color:var(--silver);font-size:13px;margin-bottom:2px;">Gambling Help NSW</p>
+            <p style="font-size:12px;color:rgba(201,206,211,.55);">Support services for NSW residents</p>
+          </div>
+        </div>
+
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--lime);text-transform:uppercase;letter-spacing:.08em;margin:24px 0 10px;">Self-Exclusion Options</h3>
+        <p style="margin-bottom:10px;">If you need time away from betting, self-exclusion programs are available:</p>
+        <ul style="list-style:none;padding:0;margin:0 0 16px;display:flex;flex-direction:column;gap:6px;">
+          <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--lime);font-size:11px;margin-top:3px;">▸</span><span><strong style="color:var(--silver);">BetStop</strong> – Australia's national self-exclusion register</span></li>
+          <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--lime);font-size:11px;margin-top:3px;">▸</span><span>Individual bookmaker self-exclusion programs</span></li>
+          <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--lime);font-size:11px;margin-top:3px;">▸</span><span>State-based self-exclusion services</span></li>
+        </ul>
+
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--lime);text-transform:uppercase;letter-spacing:.08em;margin:24px 0 10px;">Age Restrictions</h3>
+        <p style="margin-bottom:8px;">In Play Tips is strictly for Australian residents aged <strong style="color:var(--silver);">18 years and over</strong>.</p>
+        <p style="margin-bottom:16px;">We take age verification seriously. Any account found to be operated by an underage individual will be permanently terminated without refund.</p>
+
+        <!-- Bottom spacer -->
+        <div style="margin-top:32px;padding-top:20px;border-top:1px solid rgba(199,241,61,0.07);text-align:center;">
+          <span style="font-size:11px;color:rgba(142,151,159,.4);">© 2026 In Play Tips Pty Ltd. All rights reserved.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer style="background:transparent;padding:32px 20px 24px;text-align:center;">
+
+  <!-- Wordmark -->
+  <img src="wordmark.png" alt="In Play Tips"
+       style="height:18px;width:auto;display:inline-block;object-fit:contain;opacity:0.9;margin-bottom:20px;">
+
+  <!-- Legal -->
+  <p style="font-size:10px;color:rgba(142,151,159,.38);line-height:1.6;max-width:560px;margin:0 auto 14px;">
+    In Play Tips is not a bookmaker and does not accept wagers. Information provided is for educational and entertainment purposes only. Past performance is not indicative of future results. Betting involves risk — only bet what you can afford to lose. Please gamble responsibly. 18+
+  </p>
+  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-bottom:10px;">
+    <a href="#" onclick="openPrivacy();return false;" style="font-size:10px;color:rgba(142,151,159,.45);text-decoration:none;">Privacy Policy</a>
+    <a href="#" onclick="openTerms();return false;" style="font-size:10px;color:rgba(142,151,159,.45);text-decoration:none;">Terms &amp; Conditions</a>
+    <a href="#" onclick="openRG();return false;" style="font-size:10px;color:rgba(142,151,159,.45);text-decoration:none;">Responsible Gambling</a>
+  </div>
+  <p style="font-size:10px;color:rgba(142,151,159,.28);">© 2025 In Play Tips. All rights reserved.</p>
+
+</footer>
+
+
+<!-- ═══ PRIVACY MODAL ═══ -->
+<div id="privacy-modal" onclick="closePrivacyOutside(event)" style="
+  display:none;
+  position:fixed;inset:0;z-index:1100;
+  background:rgba(0,0,0,0.80);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  align-items:flex-end;justify-content:center;
+  opacity:0;transition:opacity .25s ease;
+">
+  <div id="privacy-sheet" style="
+    background:linear-gradient(170deg,#141414 0%,#0D0D0D 100%);
+    border:1px solid rgba(199,241,61,0.10);
+    border-radius:28px 28px 0 0;
+    padding:32px 24px 48px;
+    width:100%;max-width:640px;
+    max-height:88vh;
+    display:flex;flex-direction:column;
+    transform:translateY(40px);
+    transition:transform .32s cubic-bezier(.22,.68,0,1.2);
+    position:relative;
+    box-shadow:0 -8px 60px rgba(0,0,0,0.7);
+  ">
+    <!-- Close -->
+    <button onclick="closePrivacy()" style="
+      position:absolute;top:16px;right:16px;flex-shrink:0;
+      background:rgba(255,255,255,0.07);border:none;
+      width:34px;height:34px;border-radius:50%;cursor:pointer;
+      color:#fff;font-size:18px;line-height:1;
+      display:flex;align-items:center;justify-content:center;
+    ">✕</button>
+
+    <!-- Header -->
+    <div style="flex-shrink:0;margin-bottom:20px;padding-right:44px;">
+      <div style="display:inline-flex;align-items:center;gap:7px;background:rgba(199,241,61,0.08);border:1px solid rgba(199,241,61,0.18);border-radius:20px;padding:4px 12px;margin-bottom:12px;">
+        <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--lime);">In Play Tips</span>
+      </div>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:clamp(1.2rem,5vw,1.6rem);color:#fff;letter-spacing:-.025em;line-height:1.2;">Privacy Policy</h2>
+    </div>
+
+    <!-- Scrollable body -->
+    <div style="
+      overflow-y:auto;flex:1;
+      scrollbar-width:thin;scrollbar-color:rgba(199,241,61,.25) transparent;
+      padding-right:4px;
+    ">
+      <div style="font-family:'Inter',sans-serif;font-size:13.5px;color:rgba(201,206,211,.75);line-height:1.75;">
+
+        <p style="margin-bottom:16px;">This Privacy Policy explains how <strong style="color:var(--silver);">In Play Tips Pty Ltd</strong> ("In Play Tips", "we", "us", or "our") collects, uses, stores, and protects your personal information when you use our website, member dashboard, Discord community, and any connected services or integrations.</p>
+        <p style="margin-bottom:16px;">We are committed to protecting your privacy and handling personal information in line with the <em>Privacy Act 1988 (Cth)</em> and the Australian Privacy Principles (APPs). By using our services, you consent to the practices described in this policy.</p>
+
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--lime);text-transform:uppercase;letter-spacing:.08em;margin:24px 0 10px;">Information We Collect</h3>
+        <p style="margin-bottom:12px;">You may browse certain areas of In Play Tips without providing personal information. However, to access member features, premium content, support services, or community access, you will need to create an account.</p>
+        <p style="margin-bottom:8px;">The information we may collect includes:</p>
+        <ul style="list-style:none;padding:0;margin:0 0 16px;display:flex;flex-direction:column;gap:6px;">
+          <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--lime);font-size:11px;margin-top:3px;">▸</span><span>Your name and email address</span></li>
+          <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--lime);font-size:11px;margin-top:3px;">▸</span><span>Contact details such as phone number (if provided)</span></li>
+          <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--lime);font-size:11px;margin-top:3px;">▸</span><span>Payment and billing details (processed securely by third-party providers)</span></li>
+          <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--lime);font-size:11px;margin-top:3px;">▸</span><span>Discord username and account identifiers</span></li>
+          <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--lime);font-size:11px;margin-top:3px;">▸</span><span>Device, browser, and login information</span></li>
+          <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--lime);font-size:11px;margin-top:3px;">▸</span><span>Any information you voluntarily provide during onboarding or support requests</span></li>
+        </ul>
+
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--lime);text-transform:uppercase;letter-spacing:.08em;margin:24px 0 10px;">How We Use Your Information</h3>
+        <p style="margin-bottom:8px;">We collect and use personal information to:</p>
+        <ul style="list-style:none;padding:0;margin:0 0 12px;display:flex;flex-direction:column;gap:6px;">
+          <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--lime);font-size:11px;margin-top:3px;">▸</span><span>Provide and manage your access to In Play Tips services</span></li>
+          <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--lime);font-size:11px;margin-top:3px;">▸</span><span>Process subscriptions, payments, and account changes</span></li>
+          <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--lime);font-size:11px;margin-top:3px;">▸</span><span>Communicate with you about your membership, updates, promotions, or support</span></li>
+          <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--lime);font-size:11px;margin-top:3px;">▸</span><span>Verify account ownership and prevent unauthorised access</span></li>
+          <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--lime);font-size:11px;margin-top:3px;">▸</span><span>Improve our tools, systems, and user experience</span></li>
+        </ul>
+        <p style="margin-bottom:16px;">We also collect non-identifiable usage data such as IP address, device type, browser version, language settings, referral source, and pages visited. This information is used solely for analytics, performance monitoring, and service improvement and does not personally identify you.</p>
+
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--lime);text-transform:uppercase;letter-spacing:.08em;margin:24px 0 10px;">Disclosure of Information</h3>
+        <p style="margin-bottom:8px;">We may share limited personal information with trusted third-party service providers who assist us in operating our business, such as:</p>
+        <ul style="list-style:none;padding:0;margin:0 0 12px;display:flex;flex-direction:column;gap:6px;">
+          <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--lime);font-size:11px;margin-top:3px;">▸</span><span>Payment processors</span></li>
+          <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--lime);font-size:11px;margin-top:3px;">▸</span><span>Email and messaging platforms</span></li>
+          <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--lime);font-size:11px;margin-top:3px;">▸</span><span>Analytics and performance tools</span></li>
+          <li style="display:flex;gap:8px;align-items:flex-start;"><span style="color:var(--lime);font-size:11px;margin-top:3px;">▸</span><span>Customer support systems</span></li>
+        </ul>
+        <p style="margin-bottom:8px;">These providers only receive the information necessary to perform their function and are required to comply with confidentiality and privacy obligations.</p>
+        <p style="margin-bottom:16px;">We do not sell, rent, or trade your personal information to third parties.</p>
+
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--lime);text-transform:uppercase;letter-spacing:.08em;margin:24px 0 10px;">Data Security</h3>
+        <p style="margin-bottom:8px;">We take reasonable and appropriate measures to protect personal information from misuse, loss, unauthorised access, or disclosure. This includes secure data transmission, restricted access controls, and industry-standard security practices.</p>
+        <p style="margin-bottom:16px;">While we take privacy seriously, no online system can guarantee absolute security. By using our services, you acknowledge and accept this risk.</p>
+
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--lime);text-transform:uppercase;letter-spacing:.08em;margin:24px 0 10px;">Policy Updates</h3>
+        <p style="margin-bottom:8px;">This Privacy Policy may be updated from time to time to reflect changes in our services, operations, or legal obligations. Any updates will take effect once published.</p>
+        <p style="margin-bottom:16px;">Your continued use of In Play Tips after changes are made indicates acceptance of the revised policy.</p>
+
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--lime);text-transform:uppercase;letter-spacing:.08em;margin:24px 0 10px;">Accessing or Correcting Your Information</h3>
+        <p style="margin-bottom:8px;">You may request access to the personal information we hold about you. If you believe any information is incorrect or outdated, you may request that it be corrected.</p>
+        <p style="margin-bottom:16px;">Requests may require identity verification, and we reserve the right to charge a reasonable administrative fee where permitted by law.</p>
+
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--lime);text-transform:uppercase;letter-spacing:.08em;margin:24px 0 10px;">Contact Us</h3>
+        <p style="margin-bottom:4px;">If you have questions about this Privacy Policy or how your information is handled, please contact:</p>
+        <a href="mailto:inplaytipss@gmail.com" style="color:var(--lime);text-decoration:none;font-weight:600;">inplaytipss@gmail.com</a>
+
+        <!-- Bottom spacer -->
+        <div style="margin-top:32px;padding-top:20px;border-top:1px solid rgba(199,241,61,0.07);text-align:center;">
+          <span style="font-size:11px;color:rgba(142,151,159,.4);">© 2025 In Play Tips Pty Ltd. All rights reserved.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SCRIPTS ═══ -->
+<script>
+/* ── FULL DATA: 2016–2025 ── */
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+const RAW = {
+  2016:[62.45,18.20,47.90,71.33,22.14,55.60,64.18,19.77,52.41,68.92,29.55,36.87],
+  2017:[21.44,56.32,63.90,14.77,48.26,59.10,27.85,44.62,61.73,19.54,52.08,62.27],
+  2018:[58.44,72.11,61.35,49.88,64.22,70.05,28.66,44.92,66.14,38.75,52.30,35.93],
+  2019:[17.28,43.66,58.12,21.44,62.95,46.88,19.77,41.55,52.20,68.11,31.60,46.11],
+  2020:[66.22,74.50,18.33,61.87,52.94,47.11,69.02,23.66,54.80,71.45,21.73,36.78],
+  2021:[24.88,39.77,68.55,55.12,20.66,61.34,47.83,33.29,70.11,42.76,58.22,39.41],
+  2022:[19.65,44.10,57.92,23.88,41.77,62.30,36.14,28.55,49.66,67.44,38.21,44.46],
+  2023:[55.90,61.22,47.33,70.44,32.18,66.91,45.20,29.66,52.77,68.13,36.55,37.26],
+  2024:[63.00,71.55,14.88,66.20,74.11,49.73,22.64,41.92,18.30,36.55,66.88,67.16],
+  2025:[48.77,22.44,64.88,58.33,71.22,19.95,62.41,45.60,34.12,69.44,33.77,43.67],
+};
+
+const YEAR_TOTALS = {
+  all:   5678.12,
+  2016:  548.32, 2017: 531.88, 2018: 642.75, 2019: 509.67, 2020: 598.41,
+  2021:  561.94, 2022: 514.08, 2023: 603.55, 2024: 592.92, 2025: 574.60,
+};
+
+/* Build all-time dataset — one point per year with exact cumulative totals */
+function buildAllTime() {
+  return {
+    labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+    vals:   [548.32, 1080.20, 1722.95, 2232.62, 2831.03, 3392.97, 3907.05, 4510.60, 5103.52, 5678.12],
+  };
+}
+
+/* Build single-year cumulative dataset */
+function buildYear(yr) {
+  const labels = [], vals = [];
+  let running = 0;
+  RAW[yr].forEach((u, i) => {
+    running = parseFloat((running + u).toFixed(2));
+    labels.push(MONTHS[i]);
+    vals.push(running);
+  });
+  return { labels, vals };
+}
+
+/* Format a unit total as a dollar profit string ($100 per unit) */
+function fmtProfit(units) {
+  const dollars = Math.round(units * 100);
+  return '+$' + dollars.toLocaleString('en-AU');
+}
+
+/* Update foot-row units + profit stats — driven entirely from YEAR_TOTALS */
+function updateDisplay(range) {
+  const foot   = document.getElementById('foot-units');
+  const profit = document.getElementById('foot-profit');
+  const key    = range === 'all' ? 'all' : Number(range);
+  const u      = YEAR_TOTALS[key];
+  if (u === undefined) return;
+  if (foot)   foot.textContent   = '+' + u.toFixed(2) + 'U';
+  if (profit) profit.textContent = fmtProfit(u);
+}
+
+/* ── LEFT-TO-RIGHT REVEAL ANIMATION ───────────────────────────────────────
+   Strategy: instantly swap chart data with update('none'), then run a
+   requestAnimationFrame loop that clips the canvas draw area from left
+   to right (0 → 100 % width). Ease-out cubic = fast start, premium
+   decelerate. No flicker, no layout jump, tooltips unaffected post-anim.
+   ──────────────────────────────────────────────────────────────────────── */
+
+let _clipProg = 1;   // 1 = fully visible (no clip active)
+let _clipRaf  = null;
+let _animating = false;
+
+/* Ease-out cubic — snappy premium feel */
+function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+/* Custom plugin: clips dataset draw calls to a left→right growing rect */
+const drawFromLeft = {
+  id: 'drawFromLeft',
+  beforeDatasetsDraw(chart) {
+    if (_clipProg >= 1) return;
+    const { ctx, chartArea: ca } = chart;
+    if (!ca) return;
+    ctx.save();
+    ctx.beginPath();
+    /* Overshoot edges slightly so axis strokes / top points aren't clipped */
+    ctx.rect(
+      ca.left  - 4,
+      ca.top   - 12,
+      (ca.right - ca.left + 8) * _clipProg,
+      ca.bottom - ca.top + 24
+    );
+    ctx.clip();
+  },
+  afterDatasetsDraw(chart) {
+    if (_clipProg >= 1) return;
+    chart.ctx.restore();
+  }
+};
+
+/* Kick off the reveal animation; duration in ms */
+function revealChart(duration) {
+  if (_clipRaf) { cancelAnimationFrame(_clipRaf); _clipRaf = null; }
+  _clipProg  = 0;
+  _animating = true;
+  const start = performance.now();
+
+  function tick(now) {
+    const t   = Math.min((now - start) / duration, 1);
+    _clipProg = easeOutCubic(t);
+    if (ch) ch.draw();
+
+    if (t < 1) {
+      _clipRaf = requestAnimationFrame(tick);
+    } else {
+      _clipProg  = 1;
+      _animating = false;
+      _clipRaf   = null;
+      if (ch) ch.draw(); // final clean draw with no clip
+    }
+  }
+  _clipRaf = requestAnimationFrame(tick);
+}
+
+/* CHART */
+let ch = null;
+function buildChart(range, skipAnim) {
+  const isAll    = range === 'all';
+  const dataset  = isAll ? buildAllTime() : buildYear(Number(range));
+  const ctx      = document.getElementById('chart').getContext('2d');
+  const isMobile = window.innerWidth < 640;
+  const h        = isMobile ? 240 : 340;
+  const dur      = isMobile ? 460 : 560; // ms — fast but appreciable
+
+  const fg = ctx.createLinearGradient(0, 0, 0, h);
+  fg.addColorStop(0,   'rgba(199,241,61,.22)');
+  fg.addColorStop(0.6, 'rgba(57,211,0,.06)');
+  fg.addColorStop(1,   'rgba(5,5,5,0)');
+
+  /* If chart already exists, update data in-place then animate */
+  if (ch) {
+    ch.data.labels = dataset.labels;
+    ch.data.datasets[0].data = dataset.vals;
+    ch.data.datasets[0].backgroundColor = fg;
+    ch.options.scales.x.ticks.maxTicksLimit = isMobile ? (isAll ? 8 : 6) : (isAll ? 20 : 12);
+    ch.update('none'); // instant data swap — animation is handled by our plugin
+    updateDisplay(range);
+    if (!skipAnim) revealChart(dur);
+    return;
+  }
+
+  /* Register plugin once before first chart creation */
+  Chart.register(drawFromLeft);
+
+  ch = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: dataset.labels,
+      datasets: [{
+        label: 'Units',
+        data: dataset.vals,
+        borderColor: '#C7F13D',
+        borderWidth: isMobile ? 2 : 2.4,
+        backgroundColor: fg,
+        fill: true,
+        tension: 0.42,
+        pointRadius: isMobile ? 3 : 3.5,
+        pointHoverRadius: isMobile ? 6 : 7,
+        pointBackgroundColor: '#050505',
+        pointBorderColor: '#C7F13D',
+        pointBorderWidth: 2,
+        pointHoverBackgroundColor: '#C7F13D',
+        pointHoverBorderColor: '#050505',
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      animation: { duration: 0 }, // all animation handled by our plugin
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: 'rgba(8,8,8,.97)',
+          borderColor: 'rgba(199,241,61,.28)', borderWidth: 1,
+          titleColor: '#C9CED3', bodyColor: '#8E979F',
+          titleFont: { family: "'Space Grotesk',sans-serif", weight: '700', size: 12 },
+          bodyFont:  { family: "'Inter',sans-serif", size: 11 },
+          padding: 12, cornerRadius: 10,
+          filter: () => !_animating, // suppress tooltip mid-animation
+          callbacks: {
+            title: items => items[0].label,
+            label: item  => `  Units: +${Number(item.raw).toFixed(2)}U`,
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid:   { color: 'rgba(199,241,61,.04)', drawTicks: false },
+          border: { dash: [3,3], color: 'transparent' },
+          ticks:  {
+            color: '#8E979F',
+            font:  { family: "'Inter',sans-serif", size: isMobile ? 9 : 11 },
+            maxRotation: 0, autoSkip: true,
+            maxTicksLimit: isMobile ? (isAll ? 8 : 6) : (isAll ? 20 : 12),
+          }
+        },
+        y: {
+          position: 'left',
+          grid:   { color: 'rgba(199,241,61,.04)', drawTicks: false },
+          border: { dash: [3,3], color: 'transparent' },
+          ticks:  {
+            color: '#8E979F',
+            font:  { family: "'Inter',sans-serif", size: isMobile ? 9 : 11 },
+            callback: v => '+' + v.toFixed(0) + 'U',
+            padding: 6,
+            maxTicksLimit: isMobile ? 5 : 8,
+          }
+        }
+      }
+    }
+  });
+
+  updateDisplay(range);
+  if (!skipAnim) revealChart(dur); // animate initial load too
+}
+
+buildChart('all');
+
+document.querySelectorAll('.rb').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('.rb').forEach(x => x.classList.remove('on'));
+    b.classList.add('on');
+    buildChart(b.dataset.r);
+  });
+});
+
+/* Rebuild on resize — skip animation so it doesn't feel jarring */
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    const active = document.querySelector('.rb.on');
+    buildChart(active ? active.dataset.r : 'all', true); // skipAnim = true
+  }, 220);
+});
+
+
+/* MEMBER TESTIMONIALS */
+const winImgs = [
+  {src:'win1.jpg',  label:'Mar 2025'},
+  {src:'win2.jpg',  label:'Mar 2025'},
+  {src:'win3.jpg',  label:'Mar 2025'},
+  {src:'win4.jpg',  label:'Mar 2025'},
+  {src:'win5.jpg',  label:'Mar 2025'},
+  {src:'win6.jpg',  label:'Mar 2025'},
+  {src:'win7.jpg',  label:'Mar 2025'},
+  {src:'win8.png',  label:'Mar 2025'},
+  {src:'win9.png',  label:'Mar 2025'},
+  {src:'win10.jpg', label:'Mar 2025'},
+];
+document.getElementById('tm-track').innerHTML = winImgs.map(w=>`
+  <div class="tm-card">
+    <div class="tm-img-wrap">
+      <img src="${w.src}" alt="Member win" loading="lazy">
+    </div>
+    <div class="tm-label">${w.label} &nbsp;·&nbsp; <strong>Premium Member</strong></div>
+  </div>
+`).join('');
+
+/* Drag-to-scroll on desktop */
+(function(){
+  const strip = document.getElementById('tm-strip');
+  if(!strip) return;
+  let down=false, startX, scrollLeft;
+  strip.addEventListener('mousedown', e=>{ down=true; strip.classList.add('grabbing'); startX=e.pageX-strip.offsetLeft; scrollLeft=strip.scrollLeft; });
+  strip.addEventListener('mouseleave',()=>{ down=false; strip.classList.remove('grabbing'); });
+  strip.addEventListener('mouseup',  ()=>{ down=false; strip.classList.remove('grabbing'); });
+  strip.addEventListener('mousemove', e=>{ if(!down) return; e.preventDefault(); const x=e.pageX-strip.offsetLeft; strip.scrollLeft=scrollLeft-(x-startX)*1.2; });
+})();
+
+/* ACCORDION */
+document.querySelectorAll('.acc-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const key    = btn.dataset.acc;
+    const panel  = document.getElementById('acc-' + key);
+    const isOpen = btn.classList.contains('acc-open');
+
+    /* Close all */
+    document.querySelectorAll('.acc-btn').forEach(b => b.classList.remove('acc-open'));
+    document.querySelectorAll('.acc-panel').forEach(p => p.classList.remove('acc-open'));
+
+    /* Open if was closed */
+    if (!isOpen) {
+      btn.classList.add('acc-open');
+      panel.classList.add('acc-open');
+    }
+  });
+});
+
+/* PLANS MODAL */
+function openPlans() {
+  const modal = document.getElementById('plans-modal');
+  const sheet = document.getElementById('plans-sheet');
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  requestAnimationFrame(() => {
+    modal.style.opacity = '1';
+    sheet.style.transform = 'translateY(0)';
+  });
+}
+function closePlans() {
+  const modal = document.getElementById('plans-modal');
+  const sheet = document.getElementById('plans-sheet');
+  modal.style.opacity = '0';
+  sheet.style.transform = 'translateY(40px)';
+  setTimeout(() => {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }, 300);
+}
+function closePlansOutside(e) {
+  if (e.target === document.getElementById('plans-modal')) closePlans();
+}
+
+/* PRIVACY MODAL */
+function openPrivacy() {
+  const modal = document.getElementById('privacy-modal');
+  const sheet = document.getElementById('privacy-sheet');
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  requestAnimationFrame(() => {
+    modal.style.opacity = '1';
+    sheet.style.transform = 'translateY(0)';
+  });
+}
+function closePrivacy() {
+  const modal = document.getElementById('privacy-modal');
+  const sheet = document.getElementById('privacy-sheet');
+  modal.style.opacity = '0';
+  sheet.style.transform = 'translateY(40px)';
+  setTimeout(() => {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }, 300);
+}
+function closePrivacyOutside(e) {
+  if (e.target === document.getElementById('privacy-modal')) closePrivacy();
+}
+/* TERMS MODAL */
+function openTerms() {
+  const modal = document.getElementById('terms-modal');
+  const sheet = document.getElementById('terms-sheet');
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  requestAnimationFrame(() => {
+    modal.style.opacity = '1';
+    sheet.style.transform = 'translateY(0)';
+  });
+}
+function closeTerms() {
+  const modal = document.getElementById('terms-modal');
+  const sheet = document.getElementById('terms-sheet');
+  modal.style.opacity = '0';
+  sheet.style.transform = 'translateY(40px)';
+  setTimeout(() => {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }, 300);
+}
+function closeTermsOutside(e) {
+  if (e.target === document.getElementById('terms-modal')) closeTerms();
+}
+
+/* RESPONSIBLE GAMBLING MODAL */
+function openRG() {
+  const modal = document.getElementById('rg-modal');
+  const sheet = document.getElementById('rg-sheet');
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  requestAnimationFrame(() => {
+    modal.style.opacity = '1';
+    sheet.style.transform = 'translateY(0)';
+  });
+}
+function closeRG() {
+  const modal = document.getElementById('rg-modal');
+  const sheet = document.getElementById('rg-sheet');
+  modal.style.opacity = '0';
+  sheet.style.transform = 'translateY(40px)';
+  setTimeout(() => {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }, 300);
+}
+function closeRGOutside(e) {
+  if (e.target === document.getElementById('rg-modal')) closeRG();
+}
+
+/* Close any open modal on Escape key */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    if (document.getElementById('privacy-modal').style.display === 'flex') closePrivacy();
+    if (document.getElementById('terms-modal').style.display   === 'flex') closeTerms();
+    if (document.getElementById('rg-modal').style.display      === 'flex') closeRG();
+    if (document.getElementById('plans-modal').style.display   === 'flex') closePlans();
+  }
+});
+
+/* NAVBAR */
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('sc', window.scrollY>28);
+});
+
+/* MOBILE MENU */
+let mo2=false;
+document.getElementById('ham').addEventListener('click',()=>{
+  mo2=!mo2;
+  document.getElementById('mob').classList.toggle('open',mo2);
+});
+function cm(){ mo2=false; document.getElementById('mob').classList.remove('open'); }
+
+/* SCROLL REVEAL */
+const obs = new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting) return;
+    e.target.classList.add('in');
+    e.target.querySelectorAll('.pf[data-w]').forEach(b=>{
+      setTimeout(()=>b.style.width=b.dataset.w+'%', 200);
+    });
+    e.target.querySelectorAll('[data-target]').forEach(el=>cnt(el));
+    obs.unobserve(e.target);
+  });
+},{threshold:0.12});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+
+/* Stat section container watch */
+const ss=document.getElementById('stats');
+if(ss){
+  const o2=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(!e.isIntersecting) return;
+      e.target.querySelectorAll('.pf[data-w]').forEach(b=>{ setTimeout(()=>b.style.width=b.dataset.w+'%',250); });
+      e.target.querySelectorAll('[data-target]').forEach(el=>cnt(el));
+      o2.unobserve(e.target);
+    });
+  },{threshold:0.1});
+  o2.observe(ss);
+}
+
+/* COUNTER */
+function cnt(el){
+  if(el.dataset.done) return;
+  el.dataset.done='1';
+  const tgt=parseFloat(el.dataset.target);
+  const sfx=el.dataset.suffix||'';
+  const pfx=el.dataset.prefix||'';
+  const dec=parseInt(el.dataset.dec)||0;
+  const com=el.dataset.comma==='1';
+  const dur=1800, t0=performance.now();
+  (function tk(now){
+    const p=Math.min((now-t0)/dur,1);
+    const e=1-Math.pow(1-p,3.2);
+    const v=tgt*e;
+    el.textContent=pfx+(com?Math.floor(v).toLocaleString():v.toFixed(dec))+sfx;
+    if(p<1) requestAnimationFrame(tk);
+  })(t0);
+}
+</script>
+</body>
+</html>
